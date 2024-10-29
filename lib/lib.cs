@@ -63,19 +63,19 @@ public class GraphicsWindow
     }
   }
 
-  public void Square(int x, int y, int size, Color color)
+  public void Rectangle(int x, int y, int width, int height, Color color)
   {
-    x -= size / 2;
-    y -= size / 2;
+    x -= width / 2;
+    y -= height / 2;
 
     // t,l -> t,r
-    Line(x, y, x + size, y, color);
+    Line(x, y, x + width, y, color);
     // t,l -> b,l
-    Line(x + size, y, x + size, y + size, color);
+    Line(x + width, y, x + width, y + height, color);
     // b,l, -> b,r
-    Line(x + size, y + size, x, y + size, color);
+    Line(x + width, y + height, x, y + height, color);
     // b,l, -> t,l
-    Line(x, y + size, x, y, color);
+    Line(x, y + height, x, y, color);
   }
 
   public void Polygon(int x, int y, int radius, int dots, Color color)

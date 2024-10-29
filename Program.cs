@@ -7,7 +7,7 @@
 
     window.Line(0, 0, 600, 600, Color.Red);
 
-    window.Square(300, 300, 100, Color.Blue);
+    window.Rectangle(300, 300, 100, 100, Color.Blue);
 
     window.Line(0, 600, 600, 0, Color.Red);
 

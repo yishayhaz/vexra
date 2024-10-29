@@ -22,15 +22,15 @@ Display a line on the screen.
   window.Line(x1, y1, x2, y2, color);
 ```
 
-## Square
+## Rectangle
 
-Display a square on the screen.
+Display a rectangle on the screen.
 Basically displaying 4 lines.
 
 x and y are the center of the square.
 
 ```cs
-  window.Square(x, y, size, color);
+  window.Square(x, y, widht, height, color);
 ```
 
 ## Polygon
