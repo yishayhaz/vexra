@@ -1,29 +1,13 @@
-using System.Reflection.Metadata;
-
-public class GraphicsWindow
+public class Shapes
 {
-  private readonly Form form;
-  private readonly Bitmap canvas;
-
-  public GraphicsWindow(int width, int height)
-  {
-    form = new Form
-    {
-      Width = width,
-      Height = height
-    };
-
-    canvas = new Bitmap(width, height);
-  }
-
-  private void SetPixel(int x, int y, Color color)
+  public static void SetPixel(Bitmap canvas, int x, int y, Color color)
   {
     bool InBounds = x >= 0 && x < canvas.Size.Width && y >= 0 && y < canvas.Size.Height;
 
     if (InBounds) canvas.SetPixel(x, y, color);
   }
 
-  public void Line(int x1, int y1, int x2, int y2, Color color)
+  public static void Line(Bitmap canvas, int x1, int y1, int x2, int y2, Color color)
   {
     int w = x2 - x1;
     int h = y2 - y1;
@@ -47,7 +31,7 @@ public class GraphicsWindow
 
     for (int i = 0; i <= longest; i++)
     {
-      SetPixel(x1, y1, color);
+      SetPixel(canvas, x1, y1, color);
       numerator += shortest;
       if (!(numerator < longest))
       {
@@ -63,24 +47,24 @@ public class GraphicsWindow
     }
   }
 
-  public void Rectangle(int x, int y, int width, int height, Color color)
+  public static void Rectangle(Bitmap canvas, int x, int y, int width, int height, Color color)
   {
-    x -= width / 2;
-    y -= height / 2;
-
     // t,l -> t,r
-    Line(x, y, x + width, y, color);
+    Line(canvas, x, y, x + width, y, color);
     // t,l -> b,l
-    Line(x + width, y, x + width, y + height, color);
+    Line(canvas, x + width, y, x + width, y + height, color);
     // b,l, -> b,r
-    Line(x + width, y + height, x, y + height, color);
+    Line(canvas, x + width, y + height, x, y + height, color);
     // b,l, -> t,l
-    Line(x, y + height, x, y, color);
+    Line(canvas, x, y + height, x, y, color);
   }
 
-  public void Polygon(int x, int y, int radius, int dots, Color color)
+  public static void Polygon(Bitmap canvas, int x, int y, int radius, int dots, Color color)
   {
     if (dots < 3) return;
+
+    x += radius;
+    y += radius;
 
     Point[] points = new Point[dots];
 
@@ -96,23 +80,12 @@ public class GraphicsWindow
       if (i > 0)
       {
         Point fromP = points[i - 1];
-        Line(fromP.X, fromP.Y, px, py, color);
+        Line(canvas, fromP.X, fromP.Y, px, py, color);
       }
     }
 
     Point p1 = points[0];
     Point p2 = points[points.Length - 1];
-    Line(p1.X, p1.Y, p2.X, p2.Y, color);
-  }
-
-  public void Paint()
-  {
-    form.Paint += (sender, e) =>
-    {
-      e.Graphics.DrawImage(canvas, 0, 0);
-    };
-
-    Application.EnableVisualStyles();
-    Application.Run(form);
+    Line(canvas, p1.X, p1.Y, p2.X, p2.Y, color);
   }
 }

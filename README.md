@@ -27,8 +27,6 @@ Display a line on the screen.
 Display a rectangle on the screen.
 Basically displaying 4 lines.
 
-x and y are the center of the square.
-
 ```cs
   window.Square(x, y, widht, height, color);
 ```
@@ -36,7 +34,6 @@ x and y are the center of the square.
 ## Polygon
 
 Display a polygon on the screen.
-x and y are the center of the polygon.
 
 ```cs
   window.Polygon(x, y, size, dots, color);
