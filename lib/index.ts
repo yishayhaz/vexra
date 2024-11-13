@@ -23,47 +23,30 @@ export class Board {
   }
 
   line(x1: number, y1: number, x2: number, y2: number, value: number) {
-    console.log(`Drawing line from ${x1},${y1} to ${x2},${y2}`);
+    const dx = Math.abs(x2 - x1);
+    const dy = Math.abs(y2 - y1);
 
-    const w = x2 - x1;
-    const h = y2 - y1;
+    const sx = x1 < x2 ? 1 : -1;
+    const sy = y1 < y2 ? 1 : -1;
 
-    let dx1 = 0,
-      dy1 = 0,
-      dx2 = 0,
-      dy2 = 0;
+    let d = dx - dy;
 
-    if (w < 0) dx1 = -1;
-    else if (w > 0) dx1 = 1;
-    if (h < 0) dy1 = -1;
-    else if (h > 0) dy1 = 1;
-    if (w < 0) dx2 = -1;
-    else if (w > 0) dx2 = 1;
+    let x = x1,
+      y = y1;
+    while (true) {
+      this.setPixel(x, y, value);
 
-    let longest = Math.abs(w),
-      shortest = Math.abs(h);
+      if (x === x2 && y === y2) break;
 
-    if (longest <= shortest) {
-      longest = Math.abs(h);
-      shortest = Math.abs(w);
+      const d2 = 2 * d;
 
-      dx2 = 0;
-      if (h < 0) dy2 = -1;
-      else if (h > 0) dy2 = 1;
-    }
-
-    let numerator = longest >> 1;
-
-    for (let i = 0; i <= longest; i++) {
-      this.setPixel(x1, y1, value);
-      numerator += shortest;
-      if (!(numerator < longest)) {
-        numerator -= longest;
-        x1 += dx1;
-        y1 += dy1;
-      } else {
-        x1 += dx2;
-        y1 += dy2;
+      if (d2 > -dy) {
+        d -= dy;
+        x += sx;
+      }
+      if (d2 < dx) {
+        d += dx;
+        y += sy;
       }
     }
   }
@@ -71,33 +54,27 @@ export class Board {
   polygon(x: number, y: number, radius: number, dots: number, value: number) {
     if (dots < 3) return;
 
-    x += radius;
-    y += radius;
-
-    const points: [number, number][] = [];
+    const firstPoint = { x: x + radius, y };
+    let point = firstPoint;
 
     for (let i = 0; i < dots; i++) {
       const angle = (2 * Math.PI * i) / dots;
+      const vx = x + Math.round(radius * Math.cos(angle));
+      const vy = y + Math.round(radius * Math.sin(angle));
 
-      const px = x + Math.trunc(radius * Math.cos(angle));
-      const py = y + Math.trunc(radius * Math.sin(angle));
-
-      points[i] = [px, py];
-
-      if (i > 0) {
-        const fromP = points[i - 1];
-        this.line(fromP[0], fromP[1], px, py, value);
+      if (i >= 1) {
+        this.line(point.x, point.y, vx, vy, value);
       }
-    }
 
-    const p1 = points[0];
-    const p2 = points[points.length - 1];
-    this.line(p1[0], p1[1], p2[0], p2[1], value);
+      if (i === dots - 1) {
+        this.line(firstPoint.x, firstPoint.y, vx, vy, value);
+      }
+
+      point = { x: vx, y: vy };
+    }
   }
 
   print() {
-    for (const row of this.matrix) {
-      console.log(row.join(" ").replaceAll("1", "·").replaceAll("0", " "));
-    }
+    console.log(this.matrix);
   }
 }
