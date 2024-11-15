@@ -1,5 +1,5 @@
-import { line } from "./line"
-import type { Point } from "../types"
+import { line } from "./line.ts"
+import type { Point } from "../types.ts"
 
 export const polygon = (
   x: number,
@@ -9,7 +9,7 @@ export const polygon = (
 ): Point[] => {
   if (dots < 3) return []
 
-  const vertices: Point[] = [{ x: x + radius, y }]
+  const points: Point[] = [{ x: x + radius, y }]
 
   for (let i = 0; i < dots; i++) {
     const angle = (2 * Math.PI * i) / dots
@@ -17,11 +17,11 @@ export const polygon = (
     const vy = y + Math.round(radius * Math.sin(angle))
 
     if (i >= 1) {
-      vertices.push(
+      points.push(
         ...line(
           {
-            x: vertices[vertices.length - 1].x,
-            y: vertices[vertices.length - 1].y,
+            x: points[points.length - 1].x,
+            y: points[points.length - 1].y,
           },
           {
             x: vx,
@@ -32,17 +32,17 @@ export const polygon = (
     }
 
     if (i === dots - 1) {
-      vertices.push(
+      points.push(
         ...line(
           {
             x: vx,
             y: vy,
           },
-          { x: vertices[0].x, y: vertices[0].y }
+          { x: points[0].x, y: points[0].y }
         )
       )
     }
   }
 
-  return vertices
+  return points
 }

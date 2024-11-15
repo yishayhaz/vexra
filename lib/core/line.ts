@@ -1,4 +1,4 @@
-import type { Point } from "../types"
+import type { Point } from "../types.ts"
 
 export const line = (
   { x: x1, y: y1 }: Point,
@@ -6,13 +6,13 @@ export const line = (
 ): Point[] => {
   const points: Point[] = []
 
-  const dx = Math.abs(x2 - x1)
-  const dy = Math.abs(y2 - y1)
-
   const sx = x1 < x2 ? 1 : -1
   const sy = y1 < y2 ? 1 : -1
 
-  let d = dx - dy
+  const dx = (x2 - x1) * sx
+  const dy = (y2 - y1) * sy
+
+  let d = dy - dx
 
   let x = x1,
     y = y1
@@ -24,12 +24,12 @@ export const line = (
 
     const d2 = 2 * d
 
-    if (d2 > -dy) {
-      d -= dy
+    if (d2 < dy) {
+      d += dy
       x += sx
     }
-    if (d2 < dx) {
-      d += dx
+    if (d2 > -dx) {
+      d -= dx
       y += sy
     }
   }

@@ -1,8 +1,8 @@
 // TODO: Re-think this file. might be unnecessary
 
-import { line } from "./core/line"
-import { polygon } from "./core/polygon"
-import type { Point } from "./types"
+import { line } from "./core/line.ts"
+import { polygon } from "./core/polygon.ts"
+import type { Point } from "./types.ts"
 
 export class Board {
   matrix: number[][]
