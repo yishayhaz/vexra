@@ -1,7 +1,7 @@
 // WIP
 
-import { line } from "../core"
-import type { Point } from "../types"
+import { line } from "../core/index.ts"
+import type { Point } from "../types.ts"
 
 export const linear = (
   from: Point,

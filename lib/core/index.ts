@@ -1,2 +1,2 @@
-export * from "./line"
-export * from "./polygon"
+export * from "./line.ts"
+export * from "./polygon.ts"
