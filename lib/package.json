@@ -5,6 +5,18 @@
   "main": "index.ts",
   "author": "yishayhaz",
   "license": "MIT",
+  "keywords": [
+    "geometry",
+    "2d",
+    "3d",
+    "shapes",
+    "matrix",
+    "transformations",
+    "rotations",
+    "animations",
+    "art",
+    "canvas"
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/yishayhaz/vexra"
