@@ -1,0 +1,12 @@
+{
+  "version": "0.0.01",
+  "name": "vexra",
+  "description": "A minimal geometry engine for 2D/3D shapes, matrix transformations, rotations, and animations.",
+  "main": "index.ts",
+  "author": "yishayhaz",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yishayhaz/vexra"
+  }
+}

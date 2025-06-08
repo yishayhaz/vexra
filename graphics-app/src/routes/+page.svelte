@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Board } from '$lib';
+  import { Board } from 'vexra';
   import { onMount } from 'svelte'
 
   const WIDTH = 800;
@@ -39,8 +39,8 @@
     board.line(WIDTH / 2, HEIGHT - HEIGHT / 4, WIDTH / 2 + 75,  HEIGHT - HEIGHT / 4 + 75, 1);
     board.line(WIDTH / 2, HEIGHT - HEIGHT / 4, WIDTH / 2 - 75,  HEIGHT - HEIGHT / 4 + 75, 1);
 
-    for (let y = 0; y<=HEIGHT; y++) {
-      for (let x = 0; x<=WIDTH; x++) {
+    for (let y = 0; y<HEIGHT; y++) {
+      for (let x = 0; x<WIDTH; x++) {
         if (board.matrix[y][x] === 1) {
           ctx.fillStyle = 'black';
           ctx.fillRect(x, y, 1, 1);

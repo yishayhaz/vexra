@@ -1,4 +1,4 @@
-import { Board } from "./lib/board.ts"
+import { Board } from "./lib/index.ts"
 
 const board = new Board(5, 5)
 
