@@ -2,6 +2,7 @@
 
 import { line } from "./core/line.ts"
 import { polygon } from "./core/polygon.ts"
+import { triangle } from "./core/triangle.ts"
 import type { Point } from "./types.ts"
 
 export class Board {
@@ -37,6 +38,10 @@ export class Board {
 
   polygon(x: number, y: number, radius: number, dots: number, value: number) {
     this.verticesToMatrix(polygon(x, y, radius, dots), value)
+  }
+
+  triangle(a: Point, b: Point, c: Point, value: number) {
+    this.verticesToMatrix(triangle(a, b, c), value)
   }
 
   reset() {
