@@ -1,15 +1,15 @@
 import { line } from "./line.ts"
-import type { Point } from "../types.ts"
+import type { Vec2 } from "../types.ts"
 
 export const polygon = (
   x: number,
   y: number,
   radius: number,
   dots: number
-): Point[] => {
+): Vec2[] => {
   if (dots < 3) return []
 
-  const points: Point[] = [{ x: x + radius, y }]
+  const points: Vec2[] = [{ x: x + radius, y }]
 
   for (let i = 0; i < dots; i++) {
     const angle = (2 * Math.PI * i) / dots

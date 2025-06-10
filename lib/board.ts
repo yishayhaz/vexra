@@ -3,7 +3,7 @@
 import { line } from "./core/line.ts"
 import { polygon } from "./core/polygon.ts"
 import { triangle } from "./core/triangle.ts"
-import type { Point } from "./types.ts"
+import type { Vec2 } from "./types.ts"
 
 export class Board {
   matrix: number[][]
@@ -26,7 +26,7 @@ export class Board {
     }
   }
 
-  verticesToMatrix(vertices: Point[], value: number) {
+  verticesToMatrix(vertices: Vec2[], value: number) {
     for (const vertex of vertices) {
       this.setPixel(vertex.x, vertex.y, value)
     }
@@ -40,7 +40,7 @@ export class Board {
     this.verticesToMatrix(polygon(x, y, radius, dots), value)
   }
 
-  triangle(a: Point, b: Point, c: Point, value: number) {
+  triangle(a: Vec2, b: Vec2, c: Vec2, value: number) {
     this.verticesToMatrix(triangle(a, b, c), value)
   }
 

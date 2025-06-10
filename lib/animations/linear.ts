@@ -1,15 +1,15 @@
 // WIP
 
 import { line } from "../core/index.ts"
-import type { Point } from "../types.ts"
+import type { Vec2 } from "../types.ts"
 
 export const linear = (
-  from: Point,
-  to: Point,
+  from: Vec2,
+  to: Vec2,
   time: number,
   frame: number,
   fps: number
-): Point => {
+): Vec2 => {
   const deltaTimeInMs = (frame / fps) * 1000
 
   if (deltaTimeInMs >= time) return to

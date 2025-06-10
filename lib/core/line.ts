@@ -1,10 +1,10 @@
-import type { Point } from "../types.ts"
+import type { Vec2 } from "../types.ts"
 
 export const line = (
-  { x: x1, y: y1 }: Point,
-  { x: x2, y: y2 }: Point
-): Point[] => {
-  const points: Point[] = []
+  { x: x1, y: y1 }: Vec2,
+  { x: x2, y: y2 }: Vec2
+): Vec2[] => {
+  const points: Vec2[] = []
 
   const sx = x1 < x2 ? 1 : -1
   const sy = y1 < y2 ? 1 : -1
