@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Board, drawMesh, frustumMesh, xRotationMatrix, zRotationMatrix } from '../../../vexra';
+  import { Board, drawMesh, frustumMesh, xRotationMatrix, yRotationMatrix, zRotationMatrix } from '../../../vexra';
   import { onMount } from 'svelte'
 
   const WIDTH = 600;
@@ -22,17 +22,18 @@
       board.reset()
       counter+=0.02
       drawMesh(frustumMesh, board, (a, b, c) => {
-        const xRotationMat = xRotationMatrix({ theta: counter })
-        const zRotationMat = zRotationMatrix({ theta: counter })
+        const xRotationMat = xRotationMatrix(counter)
+        const yRotationMat = yRotationMatrix(counter)
+        const zRotationMat = zRotationMatrix(counter)
 
         return [
-          xRotationMat.multiplyVec3(zRotationMat.multiplyVec3(a)),
-          xRotationMat.multiplyVec3(zRotationMat.multiplyVec3(b)), 
-          xRotationMat.multiplyVec3(zRotationMat.multiplyVec3(c))
+          yRotationMat.multiplyVec3(xRotationMat.multiplyVec3(zRotationMat.multiplyVec3(a))),
+          yRotationMat.multiplyVec3(xRotationMat.multiplyVec3(zRotationMat.multiplyVec3(b))),
+          yRotationMat.multiplyVec3(xRotationMat.multiplyVec3(zRotationMat.multiplyVec3(c)))
         ]
       })
 
-      ctx.clearRect(0, 0, canvas.width, canvas.height)
+      ctx.clearRect(0, 0, canvas?.width, canvas?.height)
 
       for (let y = 0; y<HEIGHT; y++) {
         for (let x = 0; x<WIDTH; x++) {

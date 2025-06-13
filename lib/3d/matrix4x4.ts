@@ -7,16 +7,18 @@ type Matrix4x4M = [
   [number, number, number, number]
 ]
 
+const defaultMatrix4x4 = (): Matrix4x4M => [
+  [0, 0, 0, 0],
+  [0, 0, 0, 0],
+  [0, 0, 0, 0],
+  [0, 0, 0, 0],
+]
+
 export class Matrix4x4 {
   m: Matrix4x4M
 
   constructor(value?: Matrix4x4M) {
-    this.m = value ?? [
-      [0, 0, 0, 0],
-      [0, 0, 0, 0],
-      [0, 0, 0, 0],
-      [0, 0, 0, 0],
-    ]
+    this.m = value ?? defaultMatrix4x4()
   }
 
   multiplyVec3(i: Vec3): Vec3 {
@@ -51,5 +53,22 @@ export class Matrix4x4 {
     }
 
     return v
+  }
+
+  multiplyMatrices(a: Matrix4x4M) {
+    const result = defaultMatrix4x4()
+    for (let x = 0; x < 4; x++) {
+      for (let y = 0; y < 4; y++) {
+        let v = 0
+        for (let k = 0; k < 4; k++) {
+          v += this.m[x][k] * a[k][y]
+        }
+        result[x][y] = v
+      }
+    }
+
+    this.m = result
+
+    return this
   }
 }
