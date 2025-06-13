@@ -17,5 +17,8 @@
     <li>
       <a href="/3d/pyramid">Pyramid</a>
     </li>
+    <li>
+      <a href="/3d/frustum">Frustum</a>
+    </li>
   </ul>
 </nav>

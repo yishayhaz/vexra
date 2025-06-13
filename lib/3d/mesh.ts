@@ -1,4 +1,4 @@
-import type { Face, Vec3 } from "../../types.ts"
+import type { Face, Vec3 } from "../types.ts"
 
 export class Mesh {
   vertices: Vec3[]

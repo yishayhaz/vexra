@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Board, drawMesh, pyramidMesh } from '../../../vexra';
+  import { Board, drawMesh, pyramidMesh, xRotationMatrix, zRotationMatrix } from '../../../vexra';
   import { onMount } from 'svelte'
 
   const WIDTH = 600;
@@ -16,11 +16,21 @@
       throw new Error('Could not get 2d context');
     }
 
-    let c = 0
+    let counter = 0
 
     setInterval(() => {
       board.reset()
-      drawMesh(pyramidMesh, board, c+=0.02)
+      counter+=0.02
+      drawMesh(pyramidMesh, board, (a, b, c) => {
+        const xRotationMat = xRotationMatrix({ theta: counter })
+        const zRotationMat = zRotationMatrix({ theta: counter })
+
+        return [
+          xRotationMat.multiplyVec3(zRotationMat.multiplyVec3(a)),
+          xRotationMat.multiplyVec3(zRotationMat.multiplyVec3(b)), 
+          xRotationMat.multiplyVec3(zRotationMat.multiplyVec3(c))
+        ]
+      })
 
       ctx.clearRect(0, 0, canvas.width, canvas.height)
 

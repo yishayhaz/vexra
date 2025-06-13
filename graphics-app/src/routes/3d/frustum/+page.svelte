@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Board, drawMesh, cubeMesh, xRotationMatrix,zRotationMatrix } from '../../../vexra';
+  import { Board, drawMesh, frustumMesh, xRotationMatrix, zRotationMatrix } from '../../../vexra';
   import { onMount } from 'svelte'
 
   const WIDTH = 600;
@@ -21,7 +21,7 @@
     setInterval(() => {
       board.reset()
       counter+=0.02
-      drawMesh(cubeMesh, board, (a, b, c) => {
+      drawMesh(frustumMesh, board, (a, b, c) => {
         const xRotationMat = xRotationMatrix({ theta: counter })
         const zRotationMat = zRotationMatrix({ theta: counter })
 
@@ -46,5 +46,5 @@
   })
 </script>
 
-<title>Vexra | 3D Cube</title>
+<title>vexra | 3D Pyramid</title>
 <canvas width={WIDTH} height={HEIGHT} bind:this={canvas}></canvas>

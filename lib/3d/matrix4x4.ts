@@ -1,4 +1,4 @@
-import { Vec3 } from "../../types.ts"
+import type { Vec3 } from "../types.ts"
 
 type Matrix4x4M = [
   [number, number, number, number],

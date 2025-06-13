@@ -1,3 +1,4 @@
+export * from "./3d/index.ts"
 export * from "./animations/index.ts"
 export * from "./board.ts"
 export * from "./core/index.ts"
