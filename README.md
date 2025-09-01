@@ -1,5 +1,7 @@
 # Vexra
 
+[Demos](https://show-vexra.netlify.app)
+
 **A minimal geometry engine for 2D/3D shapes, matrix transformations, rotations, and animations.**
 
 Vexra is a lightweight, dependency-free TypeScript library for creating and manipulating shapes on a matrix-based board.
