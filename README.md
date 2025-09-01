@@ -24,7 +24,7 @@ import { Board } from "vexra"
 /* Initialize a 5x5 matrix */
 const board = new Board(5, 5)
 
-/* Draw a line from (0, 0) to (4, 3) */
+/* Draw a line from {0, 0} to {4, 3} */
 board.line(4, 3, 0, 0, 1)
 
 /* There are many ways to visualize the matrix — the simplest is just printing it */
