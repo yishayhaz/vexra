@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Board } from "vexra"
+  import { Board } from 'vexra';
   import { onMount } from "svelte"
 
   const WIDTH = 600
@@ -11,13 +11,15 @@
   let input: HTMLInputElement
 
   const handleSetKey = (e) => {
+    console.log(e.code, input.value)
     if (e.code === "Enter") {
       drawBoard(input.value)
     }
   }
 
   const drawBoard = (funcStr = "x**2") => {
-    const f = (x: number) => eval(funcStr)
+    // lol x*0 is here so the bundler won't remove x
+    const f = (x: number) => x*0 + eval(funcStr)
 
     board.reset()
 
