@@ -10,11 +10,8 @@
   let canvas: HTMLCanvasElement
   let input: HTMLInputElement
 
-  const handleSetKey = (e) => {
-    console.log(e.code, input.value)
-    if (e.code === "Enter") {
-      drawBoard(input.value)
-    }
+  const handleSubmit = () => {
+    drawBoard(input.value)
   }
 
   const drawBoard = (funcStr = "x**2") => {
@@ -68,13 +65,14 @@
 <div
   style="display: flex; flex-direction: column; align-items: center; gap: 10px;"
 >
-  <span
+  <form on:submit|preventDefault={handleSubmit}>
+    <span
     >(x) => <input
       placeholder="x**2"
       autoFocus
       bind:this={input}
-      on:keydown={handleSetKey}
     /></span
   >
+  </form>
   <canvas width={WIDTH} height={HEIGHT} bind:this={canvas}></canvas>
 </div>
