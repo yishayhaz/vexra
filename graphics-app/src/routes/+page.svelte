@@ -22,3 +22,5 @@
     </li>
   </ul>
 </nav>
+<h2>Graphing Calculator</h2>
+<a href="/graphing-calculator">Link</a>
