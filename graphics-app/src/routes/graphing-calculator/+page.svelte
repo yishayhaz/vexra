@@ -14,9 +14,9 @@
     drawBoard(input.value)
   }
 
-  const drawBoard = (funcStr = "x**2") => {
+  const drawBoard = (funcStr) => {
     // lol x*0 is here so the bundler won't remove x
-    const f = (x: number) => x*0 + eval(funcStr)
+    const f = (x: number) => x*0 + eval(funcStr || "x**2")
 
     board.reset()
 
